@@ -15,12 +15,12 @@ class DevController extends Controller
      */
     public function index()
     {
-        /*
+        
         $url = "https://api.github.com/users";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //curl   -H "Accept: application/vnd.github.v3+json"  
-        $devs = json_decode(curl_exec($ch)); */
+        $devs = json_decode(curl_exec($ch)); 
 
         //echo "<pre>";
         //print_r($devs);
@@ -35,24 +35,25 @@ class DevController extends Controller
             return dd($user['login'] .' - '. $user['html_url']);
         }
 
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', 'https://api.github.com/users', [
-       'headers' => ['Content-type: application/x-www-form-urlencoded'],
-       'form_params' => [
-            'per_page' => '*',
-            'followers' => '*',
-            'order', '*',
-                ],
-       //'timeout' => 20, // Response timeout
-       //'connect_timeout' => 20, // Connection timeout
-        ]);
-
-        dd($response->getBody()->getContents());
+    //     $client = new \GuzzleHttp\Client();
+    //     $response = $client->request('POST', 'https://api.github.com/users', [
+    //    'headers' => ['Content-type: application/x-www-form-urlencoded'],
+    //    'form_params' => [
+    //         'per_page' => '*',
+    //         'followers' => '*',
+    //         'order', '*',
+    //             ],
+    //    //'timeout' => 20, // Response timeout
+    //    //'connect_timeout' => 20, // Connection timeout
+    //     ]);
+        // dd($response->getBody()->getContents());
 
         // $response = \Illuminate\Support\Facades\Http::withHeaders(['Accept'=>'application/vnd.github.v3+json'])
         // ->get('https://api.github.com/users?per_page=5');
 
         // return dd($response->json());
+
+        return view('top-devs');
 
         
     }
