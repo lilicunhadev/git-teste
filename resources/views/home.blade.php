@@ -18,7 +18,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-right">Administrar acessos</label>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-warning">Acessar</button>
+                        <a id="btn-cancelar" href="{{route('acessos')}}"><i class="btn btn-warning font-weight-bold">Acessos</i></a>
 
 
                         </div>
