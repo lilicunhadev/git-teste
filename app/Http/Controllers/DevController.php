@@ -16,7 +16,6 @@ class DevController extends Controller
     public function index()
     {
 
-
         return view('ranking.index');
     }
 
@@ -42,7 +41,7 @@ class DevController extends Controller
                     $response = \Illuminate\Support\Facades\Http::withHeaders(['access_token' => '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'])
                         ->get("https://api.github.com/users/$login");
                     $user = $response->json();
-                  
+                    // dd( $user);
                     if (isset($user['public_repos'])) {
 
 
@@ -50,7 +49,7 @@ class DevController extends Controller
                             $todos_usuarios[$user['id']]['id'] = (isset($user['id'])) ? $user['id'] : '';
                             $todos_usuarios[$user['id']]['login'] = $user['id'];
                             $todos_usuarios[$user['id']]['name'] = $user['name'];
-                            $todos_usuarios[$user['id']]['email'] = $user['email'];
+                
                             $todos_usuarios[$user['id']]['seguidores'] = $user['followers'];
                             $todos_usuarios[$user['id']]['repo'] = $user['public_repos'];
                             $todos_usuarios[$user['id']]['local'] = $user['location'];

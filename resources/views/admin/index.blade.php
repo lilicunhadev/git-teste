@@ -11,7 +11,7 @@
                     <div class="card-header">{{ __('LISTAGEM-TOP-DEVS') }}</div>
 
                     <div class="card-body">
-                      
+
 
 
                         <div class="col-sm-12">
@@ -21,6 +21,8 @@
                                         <th title="Field #1">#</th>
                                         <th title="Field #2">Nome</th>
                                         <th title="Field #2">E-mail</th>
+                                        <th title="Field #2">Permissões</th>
+                                        <th title="Field #2">Alterar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +31,14 @@
                                         <td>{{$user->id }}</td>
                                         <td>{{$user->name }}</td>
                                         <td>{{$user->email }}</td>
+
+                                        <td>@foreach ($user->roles as $role)
+                                            {{ $role->name}}
+                                            @endforeach
+                                        </td>
+                                        <td><a id="btn-cancelar" href="{{route('acessos.edit',$user->id)}}"><i class="btn btn-success font-weight-bold">Alterar</i></a>
+                                        </td>
+
 
                                     </tr>
                                     @endforeach
@@ -43,7 +53,7 @@
 
 
                                 <div class="col-sm-12">
-                                <a id="btn-cancelar" href="{{route('home')}}"><i class="btn btn-warning font-weight-bold">Voltar</i></a>
+                                    <a id="btn-cancelar" href="{{route('home')}}"><i class="btn btn-warning font-weight-bold">Voltar</i></a>
                                 </div>
                             </div>
                         </div>

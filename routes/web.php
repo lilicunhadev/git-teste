@@ -20,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/devs', [App\Http\Controllers\DevController::class, 'index'])->name('ranking');
 Route::post('/devs/get-list', [App\Http\Controllers\DevController::class, 'list'])->name('ranking.list');
 
 Route::get('/admin', [App\Http\Controllers\AcessosController::class, 'index'])->name('acessos');
+Route::get('/admin/edit/{id}', [App\Http\Controllers\AcessosController::class, 'edit'])->name('acessos.edit');
+Route::post('/admin/update/{id}', [App\Http\Controllers\AcessosController::class, 'update'])->name('acessos.update');
+});

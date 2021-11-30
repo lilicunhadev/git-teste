@@ -18,12 +18,12 @@
                             <table class="table table-borderless table-dark" id="produtos">
                                 <thead>
                                     <tr>
-                                        <th title="Field #1">#</th>
+                                        <th title="Field #1">#ID</th>
                                         <th title="Field #2">Nome</th>
-                                        <th title="Field #2">E-mail</th>
                                         <th title="Field #3">Repositórios</th>
                                         <th title="Field #3">Seguidores</th>
                                         <th title="Field #3">Localização</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,11 +31,10 @@
                                     <tr>
                                         <td>{{$dev['id']}}</td>
                                         <td>{{$dev['name'] }}</td>
-                                        <td>{{$dev['email'] }}</td>
                                         <td>{{$dev['repo'] }}</td>
                                         <td>{{$dev['seguidores'] }}</td>
                                         <td>{{$dev['local'] }}</td>
-
+                                 
                                     </tr>
                                     @endforeach
                                 </tbody>

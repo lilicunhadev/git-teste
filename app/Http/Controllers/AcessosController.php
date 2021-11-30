@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class AcessosController extends Controller
 {
@@ -14,9 +15,10 @@ class AcessosController extends Controller
      */
     public function index()
     {
-
-        $users=User::all();
-        return view('admin.index',compact('users'));
+        // $role=Role::find(1);
+        $users = User::all();
+        // dd(User::with('roles')->find(1)->assignRole($role));
+        return view('admin.index', compact('users'));
     }
 
     /**
@@ -59,7 +61,10 @@ class AcessosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find(1);
+        $roles = Role::all();
+
+        return view('admin.update', compact('user', 'roles'));
     }
 
     /**
@@ -71,7 +76,12 @@ class AcessosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->removeRole($user->roles->first());
+        $role = Role::find($request['role']);
+        $user->assignRole($role);
+        $users = User::all();
+        return view('admin.index',compact('users'));
     }
 
     /**

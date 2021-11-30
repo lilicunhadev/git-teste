@@ -59,7 +59,10 @@
 
                                 <div class="col-sm-6">
                                     <button id="btn-salvar-silo" type="submit" class="btn btn-primary"><i class="ti ti-save">Pesquisar</i></button>
+                                    <a id="btn-cancelar" href="{{route('home')}}"><i class="btn btn-warning font-weight-bold">Voltar</i></a>
+
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
