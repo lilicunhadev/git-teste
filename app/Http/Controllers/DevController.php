@@ -27,36 +27,41 @@ class DevController extends Controller
      */
     public function ranking($query, $repo)
     {
-
+        $repo = ($repo == '') ? '0' : $repo;
         $todos_usuarios = array();
         $page = 1;
-        while (count($todos_usuarios) < 30) {
+        while (count($todos_usuarios) < 10) {
             $response = \Illuminate\Support\Facades\Http::withHeaders(['access_token' => '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'])
                 ->get("https://api.github.com/search/users?per_page=30;page=$page;q=$query");
             $users = $response->json();
-         
+           
             if (isset($users['items'])) {
-                
+
                 foreach ($users['items'] as $user) {
                     $login = $user['login'];
                     $response = \Illuminate\Support\Facades\Http::withHeaders(['access_token' => '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'])
                         ->get("https://api.github.com/users/$login");
                     $user = $response->json();
-                    dd($user);
-                    if ($user['public_repos'] > $repo) {
-                        $todos_usuários[]['id'] = (isset($user['id'])) ? $user['id'] : '';
-                        $todos_usuários[]['login'] = $user['id'];
-                        $todos_usuários[]['name'] = $user['name'];
-                        $todos_usuários[]['seguidores'] = $user['followers'];
-                        $todos_usuários[]['repositorios'] = $user['public_repos'];
-                        $todos_usuários[]['local'] = $user['location'];
-                    }
-                    // $users = $response->json();
+                  
+                    if (isset($user['public_repos'])) {
 
-                    dd(count($todos_usuarios));
+
+                        if ($user['public_repos'] >= $repo) {
+                            $todos_usuarios[$user['id']]['id'] = (isset($user['id'])) ? $user['id'] : '';
+                            $todos_usuarios[$user['id']]['login'] = $user['id'];
+                            $todos_usuarios[$user['id']]['name'] = $user['name'];
+                            $todos_usuarios[$user['id']]['email'] = $user['email'];
+                            $todos_usuarios[$user['id']]['seguidores'] = $user['followers'];
+                            $todos_usuarios[$user['id']]['repo'] = $user['public_repos'];
+                            $todos_usuarios[$user['id']]['local'] = $user['location'];
+                        }
+                    }
+                  
                 }
+            }else{
+                return $todos_usuarios;  
             }
-           
+
             $page++;
         }
 
@@ -97,11 +102,11 @@ class DevController extends Controller
         $query = "$pesquisa_language$pesquisa_seguidores";
         // dd($query);
 
-       
 
-        $devs= $this->ranking($query, $pesquisa_repositorio);
 
-        return view('ranking.list',compact('devs'));
+        $devs = $this->ranking($query, $pesquisa_repositorio);
+
+        return view('ranking.list', compact('devs'));
     }
 
     /**

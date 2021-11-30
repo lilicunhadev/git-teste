@@ -29,12 +29,12 @@
                                 <tbody>
                                     @foreach($devs as $dev)
                                     <tr>
-                                        <td>{{$dev->id }}</td>
-                                        <td>{{$dev->name }}</td>
-                                        <td>{{$dev->email }}</td>
-                                        <td>{{$dev->repo }}</td>
-                                        <td>{{$dev->seguidores }}</td>
-                                        <td>{{$dev->local }}</td>
+                                        <td>{{$dev['id']}}</td>
+                                        <td>{{$dev['name'] }}</td>
+                                        <td>{{$dev['email'] }}</td>
+                                        <td>{{$dev['repo'] }}</td>
+                                        <td>{{$dev['seguidores'] }}</td>
+                                        <td>{{$dev['local'] }}</td>
 
                                     </tr>
                                     @endforeach

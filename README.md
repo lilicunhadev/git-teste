@@ -1,8 +1,8 @@
 ## DESAFIO KZAS - TOP DEVELOPERS OF GITHUB
 
-### Instalação do Projeto
-- Instale o PHP e o Laravel 8 em sua máquina;
-- Instale Node;
+### Requisitos do Projeto
+- Instale o PHP 7.3+ e o Laravel 8 em sua máquina;
+- Instale Node 16+;
 - Faça o clone desse repositório em sua máquina local.
 
 

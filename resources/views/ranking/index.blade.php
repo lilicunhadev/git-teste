@@ -25,7 +25,7 @@
                                     <label class="control-label">Linguagem programação(mais de uma, utilize "+")</label>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input id="language" name="language" type="text" value="{{ old('language') }}" class="form-control" />
+                                    <input id="language" name="language" type="text" value="{{ old('language') }}" class="form-control" required/>
                                 </div>
                             </div>
                             <div class="form-group">
