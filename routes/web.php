@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    
 
     
-});
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/devs', [App\Http\Controllers\DevController::class, 'index'])->name('ranking');
+Route::post('/devs/get-list', [App\Http\Controllers\DevController::class, 'list'])->name('ranking.list');
