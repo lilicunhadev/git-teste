@@ -61,7 +61,7 @@ class AcessosController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find(1);
+        $user = User::find($id);
         $roles = Role::all();
 
         return view('admin.update', compact('user', 'roles'));

@@ -29,11 +29,11 @@ class DevController extends Controller
         $repo = ($repo == '') ? '0' : $repo;
         $todos_usuarios = array();
         $page = 1;
-        while (count($todos_usuarios) < 10) {
+        while (count($todos_usuarios) < 100) {
             $response = \Illuminate\Support\Facades\Http::withHeaders(['access_token' => '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'])
-                ->get("https://api.github.com/search/users?per_page=30;page=$page;q=$query");
+                ->get("https://api.github.com/search/users?per_page=100;page=$page;q=$query");
             $users = $response->json();
-           
+        //    dd($users);
             if (isset($users['items'])) {
 
                 foreach ($users['items'] as $user) {
@@ -41,13 +41,13 @@ class DevController extends Controller
                     $response = \Illuminate\Support\Facades\Http::withHeaders(['access_token' => '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'])
                         ->get("https://api.github.com/users/$login");
                     $user = $response->json();
-                    // dd( $user);
+                    
                     if (isset($user['public_repos'])) {
 
 
                         if ($user['public_repos'] >= $repo) {
                             $todos_usuarios[$user['id']]['id'] = (isset($user['id'])) ? $user['id'] : '';
-                            $todos_usuarios[$user['id']]['login'] = $user['id'];
+                            $todos_usuarios[$user['id']]['login'] = $user['login'];
                             $todos_usuarios[$user['id']]['name'] = $user['name'];
                 
                             $todos_usuarios[$user['id']]['seguidores'] = $user['followers'];
@@ -99,7 +99,6 @@ class DevController extends Controller
         }
 
         $query = "$pesquisa_language$pesquisa_seguidores";
-        // dd($query);
 
 
 
